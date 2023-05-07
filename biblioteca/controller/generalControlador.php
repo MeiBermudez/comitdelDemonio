@@ -310,7 +310,36 @@ public function eliminar_libro_controlador(){
         }
         return $alerta;
     }
-
+    public function eliminar_prestamo_controlador(){
+        $id=$_POST['cod'];
+        try {
+            $eliminar=generalModelo::eliminar_prestamo_modelo($id);
+            if ($eliminar->rowCount() >= 1) {
+                $datos = [
+                    "alerta" => "realizado",
+                    "titulo" => "Eliminado",
+                    "Texto" => "Se ha eliminado correctamente el préstamo",
+                ];
+                $alerta = mainModel::sweet_alert($datos);
+            } else {
+                $datos = [
+                    "alerta" => "error",
+                    "titulo" => "Upps!!",
+                    "Texto" => "No se pudo eliminar el préstamo",
+                ];
+                $alerta = mainModel::sweet_alert($datos);
+            }
+        } catch (\Throwable $th) {
+            $datos = [
+                "alerta" => "error",
+                "titulo" => "Upps!!",
+                "Texto" => "No se pudo eliminar el préstamo",
+            ];
+            $alerta = mainModel::sweet_alert($datos);
+        }
+        return $alerta;
+    }
+    
 
 
 }

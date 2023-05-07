@@ -22,8 +22,8 @@ $(document).ready(function () {
                   let template = "";
                   tabla.forEach(tabla => {
                       template += `<tr>
-                                      <td>${tabla.nombre}</td>
-                                      <td>${tabla.idEscuela}</td>
+                                      <td>${tabla.nombreCarrera}</td>
+                                      <td>${tabla.idCarrera}</td>
                                   </tr>`;
                   });
                   $('#container').html(template);

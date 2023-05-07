@@ -339,6 +339,56 @@ class generalModelo extends mainModel
         $sql->execute();
         return $sql;
     }
+    public function verTodosLosPrestamos() {
+        $sql = mainModel::cn()->prepare("SELECT 	 
+        idPrestamo,
+        fechaPrestamo,
+        fechaDevolucion,
+        estado, libros.titulo, CONCAT(alumnos.nombres, ' ', alumnos.apellidos) AS nombre_completo
+    FROM prestamos
+    INNER JOIN libros ON prestamos.idLibro = libros.idLibro
+    INNER JOIN alumnos ON prestamos.idAlumno = alumnos.idAlumno; ");
+        $sql->execute();
+        $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
+        
+        $json = array();
+        foreach($resultados as $fila){
+            $json[] = array(
+              'id'=>$fila['idPrestamo'],
+              'alumno'=>$fila['nombre_completo'],
+              'libro'=>$fila['titulo'],
+              'fechaPrestamo'=>$fila['fechaPrestamo'],
+              'fechaDevolucion'=>$fila['fechaDevolucion'],
+              'estado'=>$fila['estado']
+            );
+        }
+        return $json;
+    }
+    public function buscar_prestamo_por_alumno($nombre){
+        $sql = mainModel::cn()->prepare("SELECT p.idPrestamo, l.titulo, a.nombres, a.apellidos, p.fechaPrestamo, p.fechaDevolucion, p.estado
+        FROM prestamos p
+        INNER JOIN alumnos a ON p.idAlumno = a.idAlumno
+        INNER JOIN libros l ON p.idLibro = l.idLibro
+        WHERE CONCAT(a.nombres, ' ', a.apellidos) LIKE :nombre");
+        $sql->bindValue(":nombre", $nombre.'%');
+        $sql->execute();
+        $resultados = $sql->fetchAll(PDO::FETCH_ASSOC);
+    
+        $json = array();
+        foreach($resultados as $fila){
+            $json[] = array(
+                'idPrestamo' => $fila['idPrestamo'],
+                'titulo' => $fila['titulo'],
+                'nombres' => $fila['nombres'],
+                'apellidos' => $fila['apellidos'],
+                'fechaPrestamo' => $fila['fechaPrestamo'],
+                'fechaDevolucion' => $fila['fechaDevolucion'],
+                'estado' => $fila['estado']
+            );
+        }
+        return json_encode($json);
+    }
+    
 
 
 }
