@@ -11,7 +11,8 @@ class vistasModelo
             'escuelas',
             'home',
             'libros',
-            'prestamos'
+            'prestamos',
+            'historial'
         ];
         //comprobamos si la url existe en la lista blanca
         if (in_array($vistas, $listaBlanca)) {

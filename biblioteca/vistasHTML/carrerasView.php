@@ -10,7 +10,7 @@
                     <!-- FORM TO ADD TASKS -->
                     <form id="task-form">
                         <div class="form-group">
-                            <input type="text" id="name" placeholder="Nombre de Escuela" class="form-control">
+                            <input type="text" id="name" placeholder="Nombre de la Carrera" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="number" id="asignaturas" placeholder="Numero de asignaturas" class="form-control">

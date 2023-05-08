@@ -78,7 +78,7 @@ $peticionAjax=false;
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="<?php echo URL; ?>libros"><i class="bi bi-book-fill"></i> Libros</a></li>
                                 <li><a class="dropdown-item" href="<?php echo URL; ?>prestamos"><i class="bi bi-file-earmark-person"></i> Prestamos</a></li>
-                                <li><a class="dropdown-item" href="<?php echo URL; ?>shjkdf"><i class="bi bi-clock-history"></i> Historial</a></li>
+                                <li><a class="dropdown-item" href="<?php echo URL; ?>historial"><i class="bi bi-clock-history"></i> Historial</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

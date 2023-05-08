@@ -8,6 +8,19 @@ $(document).ready(function () {
         e.preventDefault();
 
     })
+
+
+$(document).ready(function() {
+    // Agregar evento submit al formulario con id "busqueda"
+    $("#busqueda").submit(function(event) {
+      event.preventDefault();
+      // Obtener valor de búsqueda y fecha de devolución
+      let search = $("#search").val();
+      let fechaDevolucion = $("#fechaDevolucion").val();
+      // Llamar a la función para hacer la búsqueda usando AJAX
+      buscarPrestamos(search, fechaDevolucion);
+    });
+  });
     //funcion de busqueda
     $('#search').keyup(function (e) {
         if ($('#search').val()) {
@@ -25,6 +38,7 @@ $(document).ready(function () {
                                         <td>${tabla.idPrestamo}</td>
                                         <td>${tabla.nombres}</td>
                                         <td>${tabla.titulo}</td>
+                                        <td>${tabla.fechaPrestamo}</td>
                                         <td>${tabla.fechaDevolucion}</td>
                                     </tr>`;
                     });
@@ -61,6 +75,10 @@ $(document).ready(function () {
             }); 
 
     })
+
+
+
+    
 
     function cargarTabla() {
         $.ajax({
